@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="app" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="app" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="app" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="app" class="no-js"> <!--<![endif]-->
+<head lang="cs">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Procvic.cz</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <base href="/procvic/web-application/src/">
+
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavigationController">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><i class="fa fa-graduation-cap"></i> Procvič.cz</a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li ng-class="{active: isActive('/home')}"><a ng-href="home">Domů</a></li>
+                <li ng-class="{active: isActive('/categories')}"><a ng-href="categories">Kategorie</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">Zaregistrovat se</a>
+                </li>
+                <li class="dropdown login">
+                    <a href="#">Přihlásit se <span class="caret"></span></a>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="container page" style="padding-top: 70px;" role="main" ng-view=""></div>
+
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-route/angular-route.js"></script>
+<script src="app/app.js"></script>
+<script src="app/header/headerModule.js"></script>
+<script src="app/home/HomeController.js"></script>
+<script src="app/category/CategoryController.js"></script>
+
+</body>
+</html>
