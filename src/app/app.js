@@ -1,16 +1,20 @@
-var app = angular.module('app', [
-    'ngRoute',
-    'headerModule',
-    'homeModule',
-    'categoryModule'
-]);
+(function() {
+    'use strict';
 
-app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-    $routeProvider.otherwise({
-        redirectTo : 'home'
-    });
+    var app = angular.module('app', [
+        'ngRoute',
+        'app.layout',
+        'app.home',
+        'app.category'
+    ]);
 
-    if(window.history && window.history.pushState){
-        $locationProvider.html5Mode(true);
-    }
-}]);
+    app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+        $routeProvider.otherwise({
+            redirectTo : '/'
+        });
+
+        if(window.history && window.history.pushState){
+            $locationProvider.html5Mode(true);
+        }
+    }]);
+})();
