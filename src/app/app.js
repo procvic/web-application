@@ -3,6 +3,10 @@
 
     var app = angular.module('app', [
         'ngRoute',
+        'ui.bootstrap',
+        'angular-loading-bar',
+
+        'app.user',
         'app.layout',
         'app.home',
         'app.category'

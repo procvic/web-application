@@ -28,10 +28,10 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#">Zaregistrovat se</a>
+                    <a ng-click="openRegisterModal()" href="#">Zaregistrovat se</a>
                 </li>
                 <li class="dropdown login">
-                    <a href="#">Přihlásit se</a>
+                    <a ng-click="openLoginModal()" href="#">Přihlásit se</a>
                 </li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -41,8 +41,15 @@
 
 <script src="../bower_components/angular/angular.js"></script>
 <script src="../bower_components/angular-route/angular-route.js"></script>
+<script src="../bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+<script src="../bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 
 <script src="app/app.js"></script>
+
+<script src="app/user/user.module.js"></script>
+<script src="app/user/login.controller.js"></script>
+<script src="app/user/register.controller.js"></script>
 
 <script src="app/layout/layout.module.js"></script>
 <script src="app/layout/navigation.controller.js"></script>

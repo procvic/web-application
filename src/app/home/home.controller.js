@@ -5,6 +5,6 @@
         .module('app.home')
         .controller('HomeController', HomeController);
 
-    function HomeController($scope, categoriesService) {
+    function HomeController() {
     }
 })();
