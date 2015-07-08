@@ -13,37 +13,48 @@
     <base href="/procvic/web-application/src/">
 
     <link rel="stylesheet" type="text/css" href="sass/styles.css" />
+    <style type="text/css">[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+    }</style>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavigationController">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#"><i class="fa fa-graduation-cap"></i> Procvič.cz</a>
+            <a class="navbar-brand" ng-href="home"><i class="fa fa-graduation-cap"></i> Procvič.cz</a>
         </div>
 
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="navbar-collapse collapse" data-ng-controller="NavigationController as navigation">
             <ul class="nav navbar-nav">
-                <li ng-class="{active: isActive('/')}"><a ng-href="home">Domů</a></li>
-                <li ng-class="{active: isActive('/categories')}"><a ng-href="categories">Kategorie</a></li>
+                <li data-ui-sref-active="active"><a data-ui-sref="home">Domů</a></li>
+                <li data-ui-sref-active="active"><a data-ui-sref="categories">Kategorie</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a ng-click="openRegisterModal()" href="#">Zaregistrovat se</a>
+            <ul data-ng-cloak class="nav navbar-nav navbar-right">
+                <li ng-hide="navigation.isAuthenticated">
+                    <a ng-click="navigation.openRegisterModal()" href="#">Zaregistrovat se</a>
                 </li>
-                <li class="dropdown login">
-                    <a ng-click="openLoginModal()" href="#">Přihlásit se</a>
+                <li ng-hide="navigation.isAuthenticated">
+                    <a ng-click="navigation.openLoginModal()" href="#">Přihlásit se</a>
+                </li>
+
+                <li ng-show="navigation.isAuthenticated">
+                    <a href="#" data-ng-bind="navigation.user.username"></a>
+                </li>
+                <li ng-show="navigation.isAuthenticated">
+                    <a href="#" ng-click="navigation.logout()">Odhlásit</a>
                 </li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-<div class="container page" style="padding-top: 70px;" role="main" ng-view=""></div>
+<div class="container page" style="padding-top: 70px;" role="main" data-ui-view=""></div>
 
 <script src="../bower_components/angular/angular.js"></script>
-<script src="../bower_components/angular-route/angular-route.js"></script>
+<script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="../bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
 <script src="../bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="../bower_components/ngstorage/ngStorage.min.js"></script>
 
 <script src="app/app.js"></script>
 
@@ -51,16 +62,26 @@
 <script src="app/user/login.controller.js"></script>
 <script src="app/user/register.controller.js"></script>
 
+<script src="app/subject/subject.module.js"></script>
+<script src="app/subject/subjects.controller.js"></script>
+
 <script src="app/layout/layout.module.js"></script>
 <script src="app/layout/navigation.controller.js"></script>
 
 <script src="app/home/home.module.js"></script>
+<script src="app/home/home.router.js"></script>
 <script src="app/home/home.controller.js"></script>
 
-<script src="app/category/category.module.js"></script>
-<script src="app/category/categories.controller.js"></script>
+<script src="app/categories/categories.module.js"></script>
+<script src="app/categories/categories.router.js"></script>
+<script src="app/categories/categories.controller.js"></script>
 
+<script src="common/services/loginModal.service.js"></script>
+<script src="common/services/registerModal.service.js"></script>
+<script src="common/services/authentication.service.js"></script>
 <script src="common/services/categories.service.js"></script>
+<script src="common/services/users.service.js"></script>
 
+<script src="common/directives/modal.directive.js"></script>
 </body>
 </html>

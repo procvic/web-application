@@ -2,7 +2,7 @@
    'use strict';
 
     angular
-        .module('app.category')
+        .module('app.categories')
         .controller('CategoriesController', CategoriesController);
 
     CategoriesController.$inject = ['$scope', 'categoriesService'];

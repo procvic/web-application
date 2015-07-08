@@ -1,0 +1,22 @@
+<div >
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Přihlášení</h3>
+    </div>
+    <div class="modal-body">
+        <form ng-submit="login()" name="login_form">
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="text" class="form-control" ng-model="credentials.username" id="email" placeholder="Vložte e-mail">
+            </div>
+            <div class="form-group">
+                <label for="password">Heslo:</label>
+                <input type="password" class="form-control" ng-model="credentials.password" id="password" placeholder="Heslo">
+            </div>
+            <input type="submit" class="btn btn-success btn-block" value="Přihlásit se" />
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a ng-click="loginController.openRegisterModal()" href="#">Zaregistrovat se</a>
+    </div>
+</div>

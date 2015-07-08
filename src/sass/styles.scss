@@ -1,5 +1,10 @@
 @import 'navbar';
+@import 'buttons';
 @import 'loading-bar';
+
+$border-radius-base: 0;
+$border-radius-small: 0;
+$border-radius-large: 0;
 
 @import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
 
