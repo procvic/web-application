@@ -6,10 +6,11 @@
         'ui.bootstrap',
         'angular-loading-bar',
         'ngStorage',
+        'angular-svg-round-progress',
 
         'app.user',
         'app.layout',
-        'app.subject',
+        'app.subjects',
         'app.home',
         'app.categories'
     ]);
@@ -23,11 +24,18 @@
         $urlRouterProvider.otherwise('/');
 
         if (window.history && window.history.pushState) {
-            $locationProvider.html5Mode(true);
+            $locationProvider.html5Mode({
+                enabled: true,
+                requireBase: true
+            });
         }
     }
 
     app.run(['$rootScope', 'authenticationService', function($rootScope, authenticationService){
+        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+            $rootScope.showSidebar = toState.data.sidebar;
+        });
+
         authenticationService.requestCurrentUser().then(function () {
             $rootScope.$broadcast('loggedIn');
         });

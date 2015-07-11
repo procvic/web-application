@@ -10,14 +10,30 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- build:[href] /procvic/web-application/build/ -->
     <base href="/procvic/web-application/src/">
+    <!-- endbuild -->
 
+    <!-- build:css css/styles.css -->
     <link rel="stylesheet" type="text/css" href="sass/styles.css" />
+    <!-- endbuild -->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+
+    <script>
+        WebFont.load({
+            google: {
+                families: [ 'Arimo:400,700,400italic,700italic:latin,latin-ext']
+            }
+        });
+    </script>
+
     <style type="text/css">[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
         display: none !important;
     }</style>
 </head>
-<body>
+<body ng-cloak class="ng-cloak" data-ng-controller="LayoutController as layout">
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -27,6 +43,7 @@
         <div id="navbar" class="navbar-collapse collapse" data-ng-controller="NavigationController as navigation">
             <ul class="nav navbar-nav">
                 <li data-ui-sref-active="active"><a data-ui-sref="home">Domů</a></li>
+                <li data-ui-sref-active="active"><a data-ui-sref="subjects">Výběr předmětu</a></li>
                 <li data-ui-sref-active="active"><a data-ui-sref="categories">Kategorie</a></li>
             </ul>
             <ul data-ng-cloak class="nav navbar-nav navbar-right">
@@ -47,14 +64,31 @@
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-<div class="container page" style="padding-top: 70px;" role="main" data-ui-view=""></div>
+<div class="container page" style="padding-top: 100px;" role="main">
+    <div class="row">
+        <div ng-class="showSidebar ? 'col-md-9' : 'col-md-12'">
+            <div class="content-box" data-ui-view="">
 
+            </div>
+        </div>
+        <div ng-if="showSidebar" class="col-md-3">
+            <div class="text-center">
+                <h2>Dnes splněno</h2>
+                <br />
+                <div round-progress max="100" color="blue" bgcolor="#d0d0d0" current="32" radius="75" stroke="15"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- build:js js/scripts.js -->
 <script src="../bower_components/angular/angular.js"></script>
 <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="../bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
 <script src="../bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <script src="../bower_components/ngstorage/ngStorage.min.js"></script>
+<script src="../bower_components/angular-svg-round-progressbar/build/roundProgress.js"></script>
 
 <script src="app/app.js"></script>
 
@@ -62,10 +96,12 @@
 <script src="app/user/login.controller.js"></script>
 <script src="app/user/register.controller.js"></script>
 
-<script src="app/subject/subject.module.js"></script>
-<script src="app/subject/subjects.controller.js"></script>
+<script src="app/subjects/subjects.module.js"></script>
+<script src="app/subjects/subjects.router.js"></script>
+<script src="app/subjects/subjects.controller.js"></script>
 
 <script src="app/layout/layout.module.js"></script>
+<script src="app/layout/layout.controller.js"></script>
 <script src="app/layout/navigation.controller.js"></script>
 
 <script src="app/home/home.module.js"></script>
@@ -81,7 +117,6 @@
 <script src="common/services/authentication.service.js"></script>
 <script src="common/services/categories.service.js"></script>
 <script src="common/services/users.service.js"></script>
-
-<script src="common/directives/modal.directive.js"></script>
+<!-- endbuild -->
 </body>
 </html>

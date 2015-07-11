@@ -1,8 +1,12 @@
-$navbar-height: 60px;
-$navbar-default-bg: #107fc9; // background color of navigation bar
+$navbar-height: 70px;
+$navbar-default-bg: #107FC9; // background color of navigation bar
 $navbar-default-link-color: #fff;
 $navbar-default-border: 0;
 $navbar-default-link-active-color: #fff;
 $navbar-default-color: #fff;
-$navbar-default-link-hover-color: darken($navbar-default-color, 20%);
+$navbar-default-link-hover-color: darken($navbar-default-color, 10%);
 $dropdown-border: 0;
+
+.navbar {
+  box-shadow: 0 0 20px #a0a0a0;
+}

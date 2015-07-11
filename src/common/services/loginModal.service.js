@@ -13,6 +13,7 @@
      * @returns {{open: open}}
      */
     function loginModalService($modal) {
+        /*jshint validthis:true */
         this.open = function() {
             this.modalInstance = $modal.open({
                 templateUrl: 'app/user/templates/login.html',
@@ -21,8 +22,9 @@
             });
         };
 
+        /*jshint validthis:true */
         this.close = function() {
             this.modalInstance.close();
-        }
+        };
     }
 })();

@@ -32,6 +32,6 @@
             authenticationService.logout().then(function() {
                 vm.isAuthenticated = false;
             });
-        }
+        };
     }
 })();

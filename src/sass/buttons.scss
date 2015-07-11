@@ -1,9 +1,11 @@
 $btn-success-bg: #7aca10;
 
-
-
   .btn {
-    border: 0;
+    border: 0 !important;
+    opacity: 0.8;
   }
 
+  .btn-round {
+    border-radius: 30px !important;
+  }
 

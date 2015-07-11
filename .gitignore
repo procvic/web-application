@@ -2,6 +2,11 @@
 .idea/workspace.xml
 
 bower_components/*
+node_modules/*
+
+.tmp/*
+.sass-cache/*
+build/*
 
 src/sass/*.css
 src/sass/*.map

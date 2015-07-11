@@ -11,7 +11,10 @@
         $stateProvider.state('categories', {
             url: '/categories',
             templateUrl : 'app/categories/templates/categories.html',
-            controller : 'CategoriesController'
+            controller : 'CategoriesController',
+            data: {
+                sidebar: true
+            }
         });
     }
 })();

@@ -12,6 +12,7 @@
      * @param $modal
      */
     function registerModalService($modal) {
+        /*jshint validthis:true */
         this.open = function() {
             this.modalInstance = $modal.open({
                 templateUrl: 'app/user/templates/register.html',

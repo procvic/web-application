@@ -11,7 +11,10 @@
         $stateProvider.state('home', {
             url: '/',
             templateUrl : 'app/home/templates/home.html',
-            controller : 'HomeController'
+            controller : 'HomeController',
+            data: {
+                sidebar: true
+            }
         });
     }
 })();
