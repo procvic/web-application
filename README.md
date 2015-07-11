@@ -6,6 +6,8 @@ This application is quite simple SPA client built with these technologies:
 
 * AngularJS
 * Bootstrap
+* Font Awesome
+* Grunt
 * SASS
 
 There is also quite a lot of plugins or modules in use. Names of all 3<sup>rd</sup> party libraries will be listed after
