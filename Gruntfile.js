@@ -49,7 +49,7 @@ module.exports = function(grunt) {
         },
         clean: {
             before: ['build'],
-            after: ['.tmp']
+            after: ['.tmp', '.sass-cache']
         },
         ngtemplates: {
             app: {
@@ -74,7 +74,8 @@ module.exports = function(grunt) {
         'ngtemplates',
         'concat',
         'uglify',
-        'usemin'
+        'usemin',
+        'clean:after'
     ]);
 
 };
