@@ -60,6 +60,17 @@ module.exports = function(grunt) {
                     usemin: 'build/js/scripts.js'
                 }
             }
+        },
+        replace: {
+            build: {
+
+                src: ['build/index.html'],
+                overwrite: true,
+                replacements: [{
+                    from: /(<base\shref=")(.+)(">)/,
+                    to: '$1/$3'
+                }]
+            }
         }
     });
 
@@ -67,6 +78,7 @@ module.exports = function(grunt) {
         'clean:before',
         'jshint',
         'copy:html',
+        'replace',
         'sass',
         'cssmin',
         'useminPrepare',

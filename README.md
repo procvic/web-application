@@ -46,5 +46,3 @@ npm update
 
 Then you will be able to use `grunt` command to build application. After completed, new build will be saved in _build_ 
 folder.
-
-**Note: You have to manually change the base href option to "/".**
