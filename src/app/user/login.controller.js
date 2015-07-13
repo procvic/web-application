@@ -17,8 +17,12 @@
             authenticationService.authenticate($scope.credentials).then(function() {
                 $scope.$dismiss();
                 $rootScope.$broadcast('loggedIn');
-            }, function() {
-                console.log('error');
+            }, function(data) {
+                // only when unauthorized is passed from auth service
+                // @todo catch up other errors with universal alert saying e.g. Unexpected error occurred
+                if (data.status === 401) {
+                    $scope.loginForm.$setValidity('correctCredentials', false);
+                }
             });
         };
 

@@ -4,7 +4,11 @@
         <h3 class="modal-title">Přihlášení</h3>
     </div>
     <div class="modal-body">
-        <form ng-submit="login()" name="login_form">
+        <div data-ng-messages="loginForm.$error" role="alert" data-ng-cloak="">
+            <div class="alert alert-danger" data-ng-message="correctCredentials">Nesprávné jméno nebo heslo</div>
+        </div>
+
+        <form ng-submit="login()" name="loginForm">
             <div class="form-group">
                 <label for="email">E-mail:</label>
                 <input type="text" class="form-control" ng-model="credentials.username" id="email" placeholder="Vložte e-mail">

@@ -19,6 +19,7 @@
     "ui-router-extras": "~0.0.13",
     "angular-svg-round-progressbar": "~0.2.10",
     "ngstorage": "~0.3.7",
-    "ngDialog": "~0.4.0"
+    "ngDialog": "~0.4.0",
+    "angular-messages": "~1.4.2"
   }
 }

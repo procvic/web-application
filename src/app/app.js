@@ -6,6 +6,7 @@
         'ui.bootstrap',
         'angular-loading-bar',
         'ngStorage',
+        'ngMessages',
         'angular-svg-round-progress',
 
         'app.user',
