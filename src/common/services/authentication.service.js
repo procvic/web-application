@@ -27,6 +27,10 @@
             logout: logout
         };
 
+        /**
+         * @param {Object} credentials
+         * @returns {Object}
+         */
         function authenticate(credentials) {
             return requestAccessToken(credentials.username, credentials.password).then(function (response) {
                 accessToken.set(response.data.access_token);
@@ -34,46 +38,73 @@
             });
         }
 
+        /**
+         *
+         * @returns {Boolean}
+         */
         function isAuthenticated() {
             return !!currentUser;
         }
 
 
+        /**
+         *
+         * @returns {Object}
+         */
         function getCurrentUser() {
             return currentUser;
         }
 
 
+        /**
+         *
+         * @returns {Object|Boolean}
+         */
         function requestCurrentUser() {
-            var deferred = $q.defer();
+            if (accessToken.get() != 'undefined') {
+                var deferred = $q.defer();
 
-            usersService.getUser(1).then(function (response) {
-                if (response.data.error) {
-                    deferred.reject();
-                }
+                usersService.me().then(function (response) {
+                    if (response.data.error) {
+                        deferred.reject();
+                    }
 
-                currentUser = {
-                    username: response.data.surname + ' ' + response.data.lastname
-                };
+                    currentUser = {
+                        username: response.data.surname + ' ' + response.data.lastname
+                    };
 
-                deferred.resolve();
-            });
+                    deferred.resolve();
+                });
 
-            return deferred.promise;
+                return deferred.promise;
+            }
+
+            return false;
         }
 
+        /**
+         * @param {String} username
+         * @param {String} password
+         * @returns {Object}
+         */
         function requestAccessToken(username, password) {
-            var query = 'grant_type=password&client_id=demoapp&client_secret=demopass&username=' + username + '&password=' + password;
-
-            return $http.post('http://auth.procvic.cz/authenticate', /*{
-             grant_type: 'password',
-             client_id: 'demoapp',
-             client_secret: 'demopass',
-             username: username,
-             password: password
-             }*/query, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
+            return $http.post('http://gateway.procvic.cz/auth/authenticate', {
+                grant_type: 'password',
+                client_id: 'demoapp',
+                client_secret: 'demopass',
+                username: username,
+                password: password
+            }, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
         }
 
+        /**
+         * Remove access token and current user
+         * @returns {Object}
+         */
         function logout() {
             var deferred = $q.defer();
 
@@ -83,7 +114,6 @@
             deferred.resolve();
 
             return deferred.promise;
-
         }
     }
 })

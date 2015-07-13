@@ -9,11 +9,11 @@
 
     function usersService($http, $localStorage) {
         return {
-            getUser: getUser
+            me: me
         };
 
-        function getUser(id) {
-            return $http.get('http://gateway.procvic.cz/users/get-info/' + id + '?access_token=' + $localStorage.accessToken);
+        function me() {
+            return $http.get('http://gateway.procvic.cz/users/me/?access_token=' + $localStorage.accessToken);
         }
     }
 })();
