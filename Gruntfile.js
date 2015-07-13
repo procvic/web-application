@@ -14,8 +14,16 @@ module.exports = function(grunt) {
         },
         copy: {
             html: {
-                src: 'src/index.html',
-                dest: 'build/index.html'
+                files: [
+                    {
+                        src: 'src/index.html',
+                        dest: 'build/index.html'
+                    },
+                    {
+                        src: 'src/.htaccess',
+                        dest: 'build/.htaccess'
+                    }
+                ]
             }
         },
         sass: {
