@@ -61,8 +61,14 @@
          * @returns {Object|Boolean}
          */
         function requestCurrentUser() {
-            if (accessToken.get() != 'undefined') {
-                var deferred = $q.defer();
+            var deferred = $q.defer();
+
+            console.log(accessToken.get());
+            if (accessToken.get() !== false) {
+                // @todo Check whether this part of code is needed
+                currentUser = {
+                    username: null
+                };
 
                 usersService.me().then(function (response) {
                     if (response.data.error) {
@@ -75,11 +81,11 @@
 
                     deferred.resolve();
                 });
-
-                return deferred.promise;
+            } else {
+                deferred.reject();
             }
 
-            return false;
+            return deferred.promise;
         }
 
         /**

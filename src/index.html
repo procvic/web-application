@@ -44,6 +44,7 @@
                 <li data-ui-sref-active="active"><a data-ui-sref="home">Domů</a></li>
                 <li data-ui-sref-active="active"><a data-ui-sref="subjects">Výběr předmětu</a></li>
                 <li data-ui-sref-active="active"><a data-ui-sref="categories">Kategorie</a></li>
+                <li data-ui-sref-active="active"><a data-ui-sref="settings">Nastavení uživatele</a></li>
             </ul>
             <ul data-ng-cloak class="nav navbar-nav navbar-right">
                 <li ng-hide="navigation.isAuthenticated">
@@ -93,8 +94,10 @@
 <script src="app/app.js"></script>
 
 <script src="app/user/user.module.js"></script>
+<script src="app/user/user.router.js"></script>
 <script src="app/user/login.controller.js"></script>
 <script src="app/user/register.controller.js"></script>
+<script src="app/user/settings.controller.js"></script>
 
 <script src="app/subjects/subjects.module.js"></script>
 <script src="app/subjects/subjects.router.js"></script>

@@ -32,13 +32,24 @@
         }
     }
 
-    app.run(['$rootScope', 'authenticationService', function($rootScope, authenticationService){
-        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-            $rootScope.showSidebar = toState.data.sidebar;
+    app.run(['$rootScope', '$location', '$timeout', 'authenticationService', function($rootScope, $location, $timeout, authenticationService){
+        authenticationService.requestCurrentUser().then(function () {
+                $rootScope.$broadcast('loggedIn');
         });
 
-        authenticationService.requestCurrentUser().then(function () {
-            $rootScope.$broadcast('loggedIn');
+        $rootScope.$on('$stateChangeStart', function(event, toState) {
+            console.log(authenticationService.isAuthenticated());
+            if (toState.data.restricted === true) {
+                if(!authenticationService.isAuthenticated()) {
+                    $timeout(function() {
+                        $location.path('/');
+                    });
+                }
+            }
+        });
+
+        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+            $rootScope.showSidebar = toState.data.sidebar;
         });
     }]);
 })();
