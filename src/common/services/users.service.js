@@ -13,7 +13,7 @@
         };
 
         function me() {
-            return $http.get('http://gateway.procvic.cz/users/me/?access_token=' + $localStorage.accessToken);
+            return $http.get('http://gateway.procvic.cz/users/me?access_token=' + $localStorage.accessToken);
         }
     }
 })();
