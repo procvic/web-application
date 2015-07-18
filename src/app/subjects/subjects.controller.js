@@ -5,8 +5,15 @@
         .module('app.subjects')
         .controller('SubjectsController', SubjectsController);
 
-    SubjectsController.$inject = ['$scope'];
+    SubjectsController.$inject = ['subjectsService'];
 
-    function SubjectsController($scope) {
+    function SubjectsController(subjectsService) {
+        var vm = this;
+
+        subjectsService.getSubjects().then(function() {
+
+        }, function() {
+            console.log('Problém');
+        });
     }
 })();

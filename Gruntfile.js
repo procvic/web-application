@@ -79,6 +79,11 @@ module.exports = function(grunt) {
                     to: '$1/$3'
                 }]
             }
+        },
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js'
+            }
         }
     });
 
@@ -95,6 +100,10 @@ module.exports = function(grunt) {
         'uglify',
         'usemin',
         'clean:after'
+    ]);
+
+    grunt.registerTask('test', [
+        'karma:unit'
     ]);
 
 };

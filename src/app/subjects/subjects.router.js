@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -10,8 +10,9 @@
     function SubjectsRouter($stateProvider) {
         $stateProvider.state('subjects', {
             url: '/subjects',
-            templateUrl : 'app/subjects/templates/subjects.html',
-            controller : 'SubjectsController',
+            templateUrl: 'app/subjects/templates/subjects.html',
+            controller: 'SubjectsController',
+            controllerAs: 'controller',
             data: {
                 sidebar: false
             }

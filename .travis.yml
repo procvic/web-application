@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - 0.12
+
+before_install:
+  - npm install -g grunt-cli
+
+install:
+  - npm install
+  - npm install -g bower
+  - gem install sass
+  - bower update
+
+before_script:
+  - ls
+  - grunt default
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
+script:
+  - ./node_modules/.bin/karma start --browsers Firefox --single-run

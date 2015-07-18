@@ -5,10 +5,10 @@
         .module('app.layout')
         .controller('NavigationController', NavigationController);
 
-    NavigationController.$inject = ['$scope', 'loginModalService', 'registerModalService', 'authenticationService'];
+    NavigationController.$inject = ['$scope', '$location', 'loginModalService', 'registerModalService', 'authenticationService'];
 
 
-    function NavigationController($scope, loginModalService, registerModalService, authenticationService) {
+    function NavigationController($scope, $location, loginModalService, registerModalService, authenticationService) {
         var vm = this;
 
         vm.isAuthenticated = authenticationService.isAuthenticated();
@@ -30,7 +30,9 @@
 
         vm.logout = function() {
             authenticationService.logout().then(function() {
+                console.log('logout');
                 vm.isAuthenticated = false;
+                $location.path('/');
             });
         };
     }

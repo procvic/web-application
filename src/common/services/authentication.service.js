@@ -32,6 +32,10 @@
          * @returns {Object}
          */
         function authenticate(credentials) {
+            if (!credentials) {
+                return false;
+            }
+
             return requestAccessToken(credentials.username, credentials.password).then(function (response) {
                 accessToken.set(response.data.access_token);
                 return requestCurrentUser();
@@ -63,7 +67,6 @@
         function requestCurrentUser() {
             var deferred = $q.defer();
 
-            console.log(accessToken.get());
             if (accessToken.get() !== false) {
                 // @todo Check whether this part of code is needed
                 currentUser = {
@@ -95,9 +98,6 @@
          */
         function requestAccessToken(username, password) {
             return $http.post('http://gateway.procvic.cz/auth/authenticate', {
-                grant_type: 'password',
-                client_id: 'demoapp',
-                client_secret: 'demopass',
                 username: username,
                 password: password
             }, {

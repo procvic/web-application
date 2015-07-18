@@ -23,7 +23,7 @@
     <script>
         WebFont.load({
             google: {
-                families: [ 'Arimo:400,700,400italic,700italic:latin,latin-ext']
+                families: [ 'Open+Sans:400,700:latin,latin-ext' ]
             }
         });
     </script>
@@ -43,8 +43,7 @@
             <ul class="nav navbar-nav">
                 <li data-ui-sref-active="active"><a data-ui-sref="home">Domů</a></li>
                 <li data-ui-sref-active="active"><a data-ui-sref="subjects">Výběr předmětu</a></li>
-                <li data-ui-sref-active="active"><a data-ui-sref="categories">Kategorie</a></li>
-                <li data-ui-sref-active="active"><a data-ui-sref="settings">Nastavení uživatele</a></li>
+
             </ul>
             <ul data-ng-cloak class="nav navbar-nav navbar-right">
                 <li ng-hide="navigation.isAuthenticated">
@@ -54,17 +53,21 @@
                     <a ng-click="navigation.openLoginModal()" href="#">Přihlásit se</a>
                 </li>
 
-                <li ng-show="navigation.isAuthenticated">
-                    <a href="#" data-ng-bind="navigation.user.username"></a>
-                </li>
-                <li ng-show="navigation.isAuthenticated">
-                    <a href="#" ng-click="navigation.logout()">Odhlásit</a>
+                <li ng-show="navigation.isAuthenticated" data-dropdown>
+                    <a href="#" data-dropdown-toggle>{{ navigation.user.username }} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="s">Profil</a>
+                            <a ui-sref="settings">Nastavení</a>
+                            <a href="#" ng-click="navigation.logout()">Odhlásit se</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-<div class="container page" style="padding-top: 100px;" role="main">
+<div class="container page" style="padding-top: 70px;" role="main">
     <div class="row">
         <div ng-class="showSidebar ? 'col-md-9' : 'col-md-12'">
             <div class="content-box" data-ui-view="">
@@ -79,6 +82,9 @@
             </div>
         </div>
     </div>
+</div>
+<div class="container" style="padding: 15px;">
+    O projektu
 </div>
 
 <!-- build:js js/scripts.js -->
@@ -118,6 +124,7 @@
 <script src="common/services/loginModal.service.js"></script>
 <script src="common/services/registerModal.service.js"></script>
 <script src="common/services/authentication.service.js"></script>
+<script src="common/services/subjects.service.js"></script>
 <script src="common/services/categories.service.js"></script>
 <script src="common/services/users.service.js"></script>
 <!-- endbuild -->

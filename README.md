@@ -1,5 +1,7 @@
 # Procvic.cz
 
+[![Build Status](https://travis-ci.org/procvic/web-application.svg?branch=tests)](https://travis-ci.org/procvic/web-application)
+
 ## Technology behind
 
 This application is quite simple SPA client built with these technologies:

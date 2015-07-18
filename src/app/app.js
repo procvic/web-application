@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('app', [
+    angular.module('app', [
         'ui.router',
         'ui.bootstrap',
         'angular-loading-bar',
@@ -16,7 +16,7 @@
         'app.categories'
     ]);
 
-    app.config(appConfig);
+    angular.module('app').config(appConfig);
 
     appConfig.$inject = ['$urlRouterProvider', '$locationProvider', '$stateProvider'];
 
@@ -32,24 +32,34 @@
         }
     }
 
-    app.run(['$rootScope', '$location', '$timeout', 'authenticationService', function($rootScope, $location, $timeout, authenticationService){
+    angular.module('app').run(appRun);
+
+    appRun.$inject = ['$rootScope', '$location', '$timeout', 'authenticationService'];
+
+    /**
+     * @param $rootScope
+     * @param $location
+     * @param $timeout
+     * @param authenticationService
+     */
+    function appRun($rootScope, $location, $timeout, authenticationService) {
         authenticationService.requestCurrentUser().then(function () {
-                $rootScope.$broadcast('loggedIn');
+            $rootScope.$broadcast('loggedIn');
         });
 
-        $rootScope.$on('$stateChangeStart', function(event, toState) {
+        $rootScope.$on('$stateChangeStart', function (event, toState) {
             console.log(authenticationService.isAuthenticated());
             if (toState.data.restricted === true) {
-                if(!authenticationService.isAuthenticated()) {
-                    $timeout(function() {
+                if (!authenticationService.isAuthenticated()) {
+                    $timeout(function () {
                         $location.path('/');
                     });
                 }
             }
         });
 
-        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+        $rootScope.$on('$stateChangeSuccess', function (event, toState) {
             $rootScope.showSidebar = toState.data.sidebar;
         });
-    }]);
+    }
 })();

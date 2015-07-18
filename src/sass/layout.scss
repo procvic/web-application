@@ -1,15 +1,24 @@
+html {
+  overflow-y: scroll; // always show scroll bar to prevent page jumps
+}
+
 body {
   background: #F2EEDB!important;
-  font-family: 'Arimo', Arial !important;
+  font-family: 'Open Sans', Arial !important;
 }
 
 .content-box {
-  padding: 20px;
-  //border-radius: 7px;
+  padding: 20px 30px 30px 30px;
+  //border-radius: 15px;
   background: white;
-  box-shadow: 0 0 20px #a0a0a0;
+  box-shadow: 0 0 40px #c0c0c0;
 }
 
 .content-box h1 {
   margin-top: 0;
+}
+
+h1, h2 {
+  padding-bottom: 13px;
+  border-bottom: 1px solid #f0f0f0;
 }
